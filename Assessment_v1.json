@@ -1,0 +1,1359 @@
+{
+  "info": {
+    "name": "Assessment_v1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "bruno",
+      "event": []
+    },
+    {
+      "name": "ProductMaster",
+      "item": [
+        {
+          "name": "Customers",
+          "item": [
+            {
+              "name": "SectionStandard",
+              "item": [
+                {
+                  "name": "Create",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "content-type",
+                        "value": "application/json",
+                        "disabled": false,
+                        "type": "default"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"create\",\n  \"module\": \"cusStandSec\",\n  \"data\": {\n    \"standard_id\": 2,\n    \"section\": \"Section BB\",\n    \"category_ids\": [\n      1,\n      2\n    ],\n    \"student_ids\": []\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "GetByStandard",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "content-type",
+                        "value": "application/json",
+                        "disabled": false,
+                        "type": "default"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"readOne\",\n  \"module\": \"cusStandSec\",\n  \"data\":{\n    \"id\": 19\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "List",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"action\":\"readAll\",\n    \"module\":\"cusStandSec\"\n}\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Update",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "content-type",
+                        "value": "application/json",
+                        "disabled": false,
+                        "type": "default"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"action\":\"update\",\n    \"module\":\"cusStandSec\",\n  \"data\":{\n    \"standard_id\":1,\n    \"section\":\"Section C\",\n    \"section_id\":16,\n    \"category_ids\" : [1,2,3],\n    \"deleted_category_ids\":[]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Student",
+              "item": [
+                {
+                  "name": "Create",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"create\",\n  \"module\": \"cusstudent\",\n  \"data\": {\n    \"roll_no\": \"10000012\",\n    \"name\": \"Kumar San\",\n    \"email\": \"kumarsan@gmail.com\",\n    \"phone_number\": \"8798789878\",\n    \"standard_id\": 20,\n    \"sections\": [\n      20,\n      21\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "GropByStandard",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"action\":\"getByStandard\",\n    \"module\":\"cusstudent\",\n    \"data\":{\n      \"student_id\":\"\" \n    }\n}\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "List",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"action\":\"readAll\",\n    \"module\":\"cusstudent\"\n}\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Remove",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"destroy\",\n  \"module\": \"cusstudent\",\n  \"data\":{\n      \"id\": \"14\"\n  }\n  \n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Update",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"update\",\n  \"module\": \"cusstudent\",\n  \"data\": {\n    \"roll_no\": \"10000012\",\n    \"name\": \"Kumar San a\",\n    \"email\": \"kumarsan@gmail.com\",\n    \"phone_number\": \"8798789878\",\n    \"standard_id\": 20,\n    \"sections\": [\n      20\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Teacher",
+              "item": [
+                {
+                  "name": "Create",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "content-type",
+                        "value": "application/json",
+                        "disabled": false,
+                        "type": "default"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"action\":\"create\",\n    \"module\":\"custeacher\",\n  \"data\":{\n    \"name\":\"Fejin RP\",\n    \"email\":\"rpf.fejin2@gmail.com\",\n    \"phone_number\":\"8300957186\",\n    \"category_ids\":[27,28]\n  }\n}\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Destroy",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "content-type",
+                        "value": "application/json",
+                        "disabled": false,
+                        "type": "default"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"action\":\"destroy\",\n    \"module\":\"custeacher\",\n  \"data\":{\n    \"id\":\"16\"\n  }\n}\n  ",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "GetAll",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "content-type",
+                        "value": "application/json",
+                        "disabled": false,
+                        "type": "default"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"readAll\",\n  \"module\": \"custeacher\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "ReadAllByStandard",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "content-type",
+                        "value": "application/json",
+                        "disabled": false,
+                        "type": "default"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"action\":\"readAllByStandard\",\n    \"module\":\"custeacher\",\n  \"data\":{\n    \"standard_id\":\"19\"\n  }\n}\n  ",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "Update",
+                  "event": [],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "content-type",
+                        "value": "application/json",
+                        "disabled": false,
+                        "type": "default"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{server}}/product-master/services",
+                      "host": [],
+                      "path": [],
+                      "query": [],
+                      "variable": []
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"action\":\"update\",\n    \"module\":\"custeacher\",\n  \"data\":{\n    \"name\":\"Krish\",\n    \"email\":\"rpf.fejin2@gmail.com\",\n    \"phone_number\":\"830095718612\",\n    \"category_ids\":[28],\n    \"deleted_category_ids\":[21],\n    \"teacher_id\":27\n  }\n}\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "activeAccountRequest",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "content-type",
+                "value": "application/json",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "{{server}}/auth-master/services",
+              "host": [],
+              "path": [],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"activeAccountRequest\",\n  \"module\": \"master\",\n  \"data\":{\n    \"teacher_id\" : \"aravinthkumar.ak26@gmail.com\",\n    \"allowEmail\" :0,\n    \"callbackPath\":\"confirm-password\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "updatePassword",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "content-type",
+                "value": "application/json",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "{{server}}/auth-master/services",
+              "host": [],
+              "path": [],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"updatePassword\",\n  \"module\": \"master\",\n  \"data\":{\n    \"token\" : \"aF7AvE4JKc20250406064633746\",\n    \"password\":\"123456\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "validateToken",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "content-type",
+                "value": "application/json",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "{{server}}/auth-master/services",
+              "host": [],
+              "path": [],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"validateToken\",\n  \"module\": \"master\",\n  \"data\":{\n    \"token\" : \"xdEpYwNpgp20250406050836780\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Teacher",
+          "item": [
+            {
+              "name": "Login",
+              "event": [],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/auth-master/services",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"action\":\"teacherLogin\",\n    \"module\":\"master\",\n  \"data\":{\n    \"user_name\": \"rpf.fejin@gmail.com\",\n    \"password\": \"123456\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Admin",
+          "item": [
+            {
+              "name": "Login",
+              "event": [],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/auth-master/services",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"action\":\"login\",\n    \"module\":\"master\",\n  \"data\":{\n    \"user_name\": \"rpf.fejin@gmail.com\",\n    \"password\": \"password\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Customer",
+          "item": [
+            {
+              "name": "Login",
+              "event": [],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/auth-master/services",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"action\":\"login\",\n    \"module\":\"master\",\n  \"data\":{\n    \"user_name\": \"rpf.fejin@gmail.com\",\n    \"password\": \"password\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dropdown",
+      "item": [
+        {
+          "name": "MasterStandard",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{server}}/dropdown-master",
+              "host": [],
+              "path": [],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"action\":\"findAll\",\n    \"module\":\"C-Drop\",\n    \"data\":{\n          \"drop_key\":[\"question-type\",\"categories\",\"boards\",\"questionSource\",\"complexityLevel\"] //\"standard,categories,boards,questionSource,complexityLevel\"\n      }\n}  ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Records_v2",
+      "item": [
+        {
+          "name": "Question-type",
+          "item": [
+            {
+              "name": "question-type -find-one",
+              "event": [],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-type/1",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "question-type -update",
+              "event": [],
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-type/3",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\" : \"test4\",\n  \"description\" :\"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "question-type",
+              "event": [],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-type",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "question-type -create",
+              "event": [],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-type",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\" : \"\",\n  \"description\" :\"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "question-type -remove",
+              "event": [],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-type/3",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "board",
+          "item": [
+            {
+              "name": "create",
+              "event": [],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/board",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\" : \"test\",\n  \"description\":\"testing\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "find-one",
+              "event": [],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/board/2",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "update",
+              "event": [],
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/board/5",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\" : \"testing\",\n  \"descriptin\":\"\"\n  \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "remove",
+              "event": [],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/board/6",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "fetchAll",
+              "event": [],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/board",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "category",
+          "item": [
+            {
+              "name": "find-one",
+              "event": [],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/category/1",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "create",
+              "event": [],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/category",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\" : \"test\",\n  \"description\" :\"for testing\",\n  \"parent_id\": 1\n  \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "fetchAll",
+              "event": [],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/category",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "update",
+              "event": [],
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/category/13",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\" : \"test12345\",\n  \"description\" :\"for testing\",\n  \"parent_id\": 1,\n  \"is_active\":true\n  \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "remove",
+              "event": [],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/category/14",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "complexity-level",
+          "item": [
+            {
+              "name": "find-one",
+              "event": [],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/complexity-level/5",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "create",
+              "event": [],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/complexity-level",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\" : \"test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "fetchAll",
+              "event": [],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/complexity-level",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "remove",
+              "event": [],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/complexity-level/5",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "update",
+              "event": [],
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/complexity-level/5",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\" : \"testing\"\n  \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "question-bank",
+          "item": [
+            {
+              "name": "fetchAll",
+              "event": [],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-bank",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "create -mcq",
+              "event": [],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-bank",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question_text\": \"What is the capital of India?\",\n  \"question_type_id\": 1,\n  \"category_id\": 2,\n  \"source_id\": 1,\n  \"mark\": 2,\n  \"answerable_time_seconds\": 60,\n  \"complexity_level_id\": 1,\n  \"mcq_selection\": \"SINGLE\",\n  \"created_by\": \"admin_user\",\n  \"verified_by\": \"teacher_1\",\n  \"status\": \"draft\",\n  \"evaluation_method\": \"MANUAL\",\n  \"board_id\": 3,\n  \"question_media\": [\n    {\n      \"type\": \"image\",\n      \"path\": \"/uploads/question-images/india-map.png\",\n      \"is_active\": true\n    }\n  ],\n  \"mcq_options\": [\n    {\n      \"option_text\": \"New Delhi\",\n      \"is_correct_answer\": true,\n      \"is_active\": true,\n      \"option_media\": [\n        {\n          \"type\": \"image\",\n          \"path\": \"/uploads/option-images/option1.png\",\n          \"is_active\": true\n        }\n      ]\n    },\n    {\n      \"option_text\": \"Mumbai\",\n      \"is_correct_answer\": false,\n      \"is_active\": true\n    }\n  ],\n  \"explanation\": {\n    \"explanation\": \"New Delhi is the capital of India.\",\n    \"answer_keywords\": \"capital,New Delhi\",\n    \"explanation_media\": [\n      {\n        \"type\": \"document\",\n        \"path\": \"/uploads/explanations/india-capital-info.pdf\",\n        \"is_active\": true\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "create -fib",
+              "event": [],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-bank",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question_text\": \"What is the capital of India?\",\n  \"question_type_id\": 2,\n  \"category_id\": 2,\n  \"source_id\": 1,\n  \"mark\": 2,\n  \"answerable_time_seconds\": 60,\n  \"complexity_level_id\": 1,\n  \"mcq_selection\": \"\",\n  \"created_by\": \"admin_user\",\n  \"verified_by\": \"teacher_1\",\n  \"status\": \"draft\",\n  \"evaluation_method\": \"MANUAL\",\n  \"board_id\": 3,\n  \"question_media\": [\n    {\n      \"type\": \"image\",\n      \"path\": \"/uploads/question-images/india-map.png\",\n      \"is_active\": true\n    }\n  ],\n  \"mcq_options\": [],\n  \"explanation\": {\n    \"explanation\": \"New Delhi is the capital of India.\",\n    \"answer_keywords\": \"capital,New Delhi\",\n    \"explanation_media\": [\n      {\n        \"type\": \"document\",\n        \"path\": \"/uploads/explanations/india-capital-info.pdf\",\n        \"is_active\": true\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "find-one",
+              "event": [],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-bank/3",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "remove",
+              "event": [],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-bank/3",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "update",
+              "event": [],
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-bank/3",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question_text\": \"What is the capital of India?\",\n  \"question_type_id\": 1,\n  \"category_id\": 2,\n  \"source_id\": 1,\n  \"mark\": 2,\n  \"answerable_time_seconds\": 60,\n  \"complexity_level_id\": 1,\n  \"mcq_selection\": \"SINGLE\",\n  \"created_by\": \"admin_user\",\n  \"verified_by\": \"teacher_1\",\n  \"status\": \"draft\",\n  \"evaluation_method\": \"MANUAL\",\n  \"board_id\": 3,\n  \"question_media\": [\n  // {\n  // \"type\": \"image\",\n  // \"path\": \"/uploads/question-images/india-map.png\",\n  // \"is_active\": true\n  // }\n  ],\n  \"mcq_options\": [\n    {\n      \"id\":9,\n      \"option_text\": \"New Delhi update\",\n      \"is_correct_answer\": true,\n      \"option_media\": [\n        {\n          \"id\":3, //update the media if you add the id ethier creae the media\n          \"type\": \"image\",\n          \"path\": \"/uploads/option-images/option1_update.png\"\n        },\n        {\n          \"id\":4,\n          \"type\": \"image\",\n          \"path\": \"/uploads/option-images/option1_update.png\"\n        }\n      ]\n    }\n  ],\n  // \"explanation\": {\n  // \"explanation\": \"New Delhi is the capital of India.\",\n  // \"answer_keywords\": \"capital,New Delhi\",\n  // \"explanation_media\": [\n  // {\n  // \"type\": \"document\",\n  // \"path\": \"/uploads/explanations/india-capital-info.pdf\",\n  // \"is_active\": true\n  // }\n  // ]\n  // },\n  \"clear_existing_media\" : [6],\n  \"clear_existing_options\" : [11],\n  \"clear_options_media\":[11]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "question-source",
+          "item": [
+            {
+              "name": "create",
+              "event": [],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-source",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\" : \"test\",\n  \"description\" :\"test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "remove",
+              "event": [],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-source/3",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "find-one",
+              "event": [],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-source/2",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "fetchAll",
+              "event": [],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-source",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            },
+            {
+              "name": "update",
+              "event": [],
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{server}}/question-source/3",
+                  "host": [],
+                  "path": [],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\" : \"testing\",\n  \"description\" :\"for testing\"\n  \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "dropdownmaster",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "disabled": false,
+                "type": "default"
+              },
+              {
+                "key": "content-type",
+                "value": "application/json",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/dropdown-master",
+              "host": [
+                "localhost"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"action\":\"findAll\", \"module\":\"C-Drop\", \"data\":{ \"drop_key\":[\"question-type\",\"categories\",\"boards\",\"questionSource\",\"complexityLevel\"] //\"standard,categories,boards,questionSource,complexityLevel\" } } ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "server",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
