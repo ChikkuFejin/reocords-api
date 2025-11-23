@@ -6,6 +6,7 @@ export const createCategoryDtoScheme = z
     description: z.string().optional(),
     parent_id: z.number().optional().nullable(),
     is_active: z.boolean().optional().nullable().default(true),
+    standard_id: z.number().optional().nullable(),
   })
   .required();
 

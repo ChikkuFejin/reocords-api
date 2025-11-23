@@ -10,7 +10,7 @@ export const createTopicsDtoScheme = z
 export const updateTopicsDtoScheme = z
   .object({
     name: z.string().min(1),
-    description: z.string().optional().default(''),
+    description: z.string().optional().default('').nullable(),
   })
   .required();
 

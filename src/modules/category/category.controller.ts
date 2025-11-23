@@ -49,6 +49,12 @@ export class CategoryController {
     return serviceResponse.success(CategoryResource.toCollection(data));
   }
 
+  @Get('standard/:standardId')
+  async findByStandard(@Param('standardId') standardId: number) {
+    const data = await this.categoryService.findByStandard(Number(standardId));
+    return serviceResponse.success(CategoryResource.toCollection(data));
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: number) {
     const data = await this.categoryService.findOne(id);

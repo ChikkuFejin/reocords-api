@@ -1,5 +1,4 @@
 import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
-import { dropDownMasterDtoScheme } from './dto/dropdown-master-list.dto';
 import { validateWithZod } from '../../helpers/zod-validator';
 import { serviceResponse } from '../../helpers/response';
 import { ModuleRef } from '@nestjs/core';
@@ -14,6 +13,10 @@ import { QuestionSourceService } from '../question-source/question-source.servic
 import { QuestionSourceResource } from '../question-source/resources/question-source.resource';
 import { ComplexityLevelService } from '../complexity_level/complexity-level.service';
 import { ComplexityLevelResource } from '../complexity_level/resources/complexity-level.resource';
+import { TopicsResource } from '../topics/resources/topics.resource';
+import { TopicService } from '../topics/topic.service';
+import { StandardsService } from '../standards/standards.service';
+import { StandardsResource } from '../standards/resources/standards.resource';
 
 @Injectable()
 export class DropdownMasterService {
@@ -48,6 +51,14 @@ export class DropdownMasterService {
         service: ComplexityLevelService,
         resource: ComplexityLevelResource,
       },
+      topics: {
+        service: TopicService,
+        resource: TopicsResource,
+      },
+      standards: {
+        service: StandardsService,
+        resource: StandardsResource,
+      },
     };
 
     try {
@@ -60,8 +71,8 @@ export class DropdownMasterService {
         const service = await this.moduleRef.get(serviceName, {
           strict: false,
         });
-
-        typeData[type] = await service[action]();
+        const institution_id = data?.institution_id;
+        typeData[type] = await service[action](institution_id);
         typeData[type] = resourceName.toCollection(typeData[type]);
       }
 

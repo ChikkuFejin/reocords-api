@@ -1,98 +1,239 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Records Backend (NestJS)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A modular NestJS REST API for managing academic records such as question banks, standards, assessments, topics, categories, and boards. The service uses MySQL via TypeORM, DTO validation via Zod, and a pluggable dynamic router for specific service-style endpoints.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This README explains what the project does, its features, how to run it locally, how requests are validated and handled, and how to extend it.
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Overview
 
-## Project setup
+- Purpose: Provide backend APIs to manage educational content and metadata used to build assessments (exams/tests) from a question bank organized by standards, topics, categories, etc.
+- Architecture: NestJS modular structure with TypeORM (MySQL), DTOs + Zod validation, and conventional REST controllers. Some modules expose a single dynamic "services" endpoint that dispatches actions through a RouterService.
+- Included API collections: Postman collection and local environment are provided at the repository root.
+  - Records-Backend-API.postman_collection.json
+  - Records-Backend-Local.postman_environment.json
 
-```bash
-$ npm install
-```
 
-## Compile and run the project
+## Tech Stack
 
-```bash
-# development
-$ npm run start
+- Runtime: Node.js (NestJS)
+- Language: TypeScript
+- Framework: NestJS
+- Database: MySQL (TypeORM)
+- Validation: Zod (custom Nest pipe)
+- Auth/Context: UserContextMiddleware (JWT-ready, currently stubbed)
 
-# watch mode
-$ npm run start:dev
 
-# production mode
-$ npm run start:prod
-```
+## High-level Features
 
-## Run tests
+- Authentication and service-style routing
+  - Auth controller with dynamic service routing via RouterService
+  - Support for pluggable module/action routing patterns
+- Question Bank management (CRUD)
+- Standards management (CRUD + institution-specific queries + add sections)
+- Assessments management (CRUD + add questions to sections + list section questions)
+- Topics management (CRUD)
+- Categories management (CRUD with parent-child relationships)
+- Boards management (CRUD)
+- Question Sources management (CRUD)
+- Question Types management (CRUD)
+- Dropdown/Product master service-style endpoints (via RouterService)
+- Consistent response format and message enums
+- DTO validation using ZodValidationPipe
 
-```bash
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
+## Modules and Endpoints
 
-# test coverage
-$ npm run test:cov
-```
+Base paths are inferred from controllers. Parameters and payloads are validated using DTOs and Zod schemas.
 
-## Deployment
+- Auth
+  - Base: /auth-master
+  - POST /services → dynamic service action via RouterService (see Dynamic Router section)
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+- Question Bank
+  - Base: /question-bank
+  - POST / → Create question
+  - GET / → List all
+  - GET /:id → Get one
+  - PATCH /:id → Update
+  - DELETE /:id → Delete
+  - POST /institution → List by the requester’s institution (user context required)
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+- Standards
+  - Base: /standards
+  - POST / → Create standard (with sections payload support via DTO)
+  - GET / → List all
+  - GET /:id → Get one
+  - PATCH /:id → Update
+  - DELETE /:id → Delete
+  - POST /institution/:id → List by institution id
+  - POST /add-standard-section → Add standard section (requires user context)
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+- Assessments
+  - Base: /assessments
+  - POST / → Create assessment
+  - GET / → List all
+  - GET /:id → Get one
+  - PATCH /:id → Update
+  - DELETE /:id → Delete
+  - POST /add-questions → Map questions to assessment sections
+  - POST /section-questions/:assessmentId → Get questions grouped by sections for an assessment
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+- Topics
+  - Base: /topic-service
+  - POST / → Create topic
+  - GET / → List all
+  - GET /:id → Get one
+  - PATCH /:id → Update
+  - DELETE /:id → Delete
 
-## Resources
+- Categories
+  - Base: /category
+  - POST / → Create category (optional parent_id for hierarchy)
+  - GET / → List all
+  - GET /:id → Get one
+  - PATCH /:id → Update (supports parent changes)
+  - DELETE /:id → Delete
 
-Check out a few resources that may come in handy when working with NestJS:
+- Boards
+  - Base: /board
+  - POST / → Create board
+  - GET / → List all
+  - GET /:id → Get one
+  - PATCH /:id → Update
+  - DELETE /:id → Delete
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- Question Sources
+  - Base: /question-source
+  - POST / → Create
+  - GET / → List all
+  - GET /:id → Get one
+  - PATCH /:id → Update
+  - DELETE /:id → Delete
 
-## Support
+- Question Types
+  - Base: /question-type
+  - POST / → Create
+  - GET / → List all
+  - GET /:id → Get one
+  - PATCH /:id → Update
+  - DELETE /:id → Delete
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- Dropdown Master (service-style)
+  - Base: /dropdown-master
+  - POST / → Dynamic service action via RouterService
 
-## Stay in touch
+- Product Master (service-style)
+  - Base: /product-master
+  - POST /services → Dynamic service action via RouterService
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## Response Format and Validation
+
+- Responses use a helper wrapper: serviceResponse.success(...)/failure(...)
+  - Common messages come from HttpResponseMessages (e.g., CREATED, UPDATED, DELETED, RESOURCE_NOT_AFFECTED)
+  - Expect a shape such as { success: boolean, data?: any, message?: string, error?: any }
+- Validation uses Zod via a custom Nest pipe (ZodValidationPipe)
+  - DTOs define schemas such as createQuestionTypeDtoScheme, assessmentDtoSchema, etc.
+  - Controllers apply @UsePipes(new ZodValidationPipe(schema)) or parameter-level pipes
+
+
+## Authentication and User Context
+
+- The project includes a UserContextMiddleware added globally in AppModule, attaching req.user for downstream use. Currently, it stubs a user:
+  - id: 1, institution_id: 1, username: 'dummmy name'
+- JWT verification is scaffolded but commented in the middleware; in production, enable verification and use a secret via environment variables.
+
+
+## Dynamic Router Service
+
+Some endpoints accept a single POST body and route to service methods dynamically:
+
+- RouterService expects a body: { module: string, action: string, data?: any }
+- It maps module to a Service class, then invokes service[action](body, res)
+- Current module map (router.service.ts):
+  - auth → AuthService
+  - master → AuthService
+  - C-Drop → DropdownMasterService
+- To add new modules/actions, extend the map in resolveServiceName and implement the corresponding service methods.
+
+
+## Database and Entities
+
+- Database: MySQL, configured in src/app.module.ts via TypeOrmModule.forRoot
+  - host: localhost, port: 3306, username: root, password: '', database: records
+  - autoLoadEntities: true, synchronize: false (recommended for production)
+- SQL references are provided at repo root:
+  - records_reference.sql
+  - records_v2.sql
+- Entities are located under src/entities and module-specific folders; TypeORM repositories are used in services.
+
+
+## Environment Variables
+
+The app uses @nestjs/config (global). Create a .env at the project root as needed. Example:
+
+- APP_PORT=3000
+- NODE_ENV=development
+- DB_HOST=localhost
+- DB_PORT=3306
+- DB_USER=root
+- DB_PASS=
+- DB_NAME=records
+- JWT_SECRET=change_me
+
+Note: The current TypeORM configuration in app.module.ts uses static values. You can refactor it to read from process.env to align with the above keys.
+
+
+## Getting Started (Local)
+
+1) Prerequisites
+- Node.js 18+
+- MySQL 8+
+
+2) Install dependencies
+- npm install
+
+3) Configure database
+- Create a MySQL database named records (or update app.module.ts / env to match)
+- Optionally import provided SQL dumps (records_reference.sql or records_v2.sql)
+
+4) Run the app
+- Development: npm run start:dev
+- Plain dev: npm run start
+- Production build: npm run build && npm run start:prod
+
+5) Test the API
+- Import Records-Backend-API.postman_collection.json and Records-Backend-Local.postman_environment.json into Postman
+- Adjust base URL and tokens as needed
+
+
+## Project Structure (Highlights)
+
+- src/app.module.ts: Root module, registers modules and TypeORM, applies UserContextMiddleware globally
+- src/main.ts: Nest bootstrap (global pipes/filters can be added here)
+- src/middleware/user-context.middleware.ts: Injects req.user (stub); enable JWT verification for production
+- src/router.service.ts: Dynamic routing engine for service-style endpoints
+- src/utils/pipes/zodValidation.pipe.ts: Zod validation pipe used by controllers
+- src/modules/**: Feature modules with controllers, services, DTOs, resources
+
+
+## Development Notes
+
+- Validation: Prefer Zod schemas kept alongside DTOs; enforce via ZodValidationPipe
+- Error handling: Use Nest exceptions (e.g., BadRequestException) and serviceResponse.failure for consistent payloads
+- Messages: Use HttpResponseMessages enum for standardized messages
+- Resources (transformers): Each module has Resource mappers to shape entities into response DTOs
+- Extensibility: To add a new feature, generate a Nest module/controller/service and follow the same DTO + Zod + Resource pattern
+
+
+## Contributing
+
+- Follow the existing code style and lint rules
+- Validate inputs with Zod and return consistent serviceResponse envelopes
+- Update this README and the Postman collection when adding/removing endpoints
+
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is released under the MIT License.

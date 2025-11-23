@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateBoardDto } from './dto/create-board.dto';
+import { UpdateBoardDto } from './dto/update-board.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Board } from '../../entities/boards.entity';
@@ -23,8 +24,16 @@ export class BoardService {
     return this.repo.findOne({ where: { id } });
   }
 
-  update(id: number, dto: CreateBoardDto) {
-    return this.repo.update(id, dto);
+  update(id: number, dto: UpdateBoardDto) {
+    // Only update fields that are provided (not undefined)
+    const updateData: Partial<Board> = {};
+    if (dto.name !== undefined) {
+      updateData.name = dto.name;
+    }
+    if (dto.description !== undefined) {
+      updateData.description = dto.description;
+    }
+    return this.repo.update(id, updateData);
   }
 
   remove(id: number) {

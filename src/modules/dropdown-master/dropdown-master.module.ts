@@ -13,6 +13,8 @@ import { QuestionSourceService } from '../question-source/question-source.servic
 import { ComplexityLevelService } from '../complexity_level/complexity-level.service';
 import { Board } from '../../entities/boards.entity';
 import { BoardService } from '../boards/board.service';
+import { StandardsService } from '../standards/standards.service';
+import { Standard } from '../../entities/standard.entity';
 
 @Module({
   imports: [
@@ -22,6 +24,7 @@ import { BoardService } from '../boards/board.service';
       QuestionSource,
       ComplexityLevel,
       Board,
+      Standard
     ]),
   ],
   providers: [
@@ -32,6 +35,7 @@ import { BoardService } from '../boards/board.service';
     QuestionSourceService,
     ComplexityLevelService,
     BoardService,
+    StandardsService,
   ],
   controllers: [DropdownMasterController],
 })

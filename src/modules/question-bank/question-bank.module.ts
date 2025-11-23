@@ -8,6 +8,7 @@ import { McqOption } from '../../entities/mcq-option.entity';
 import { McqOptionMedia } from '../../entities/mcq-option-media.entity';
 import { QuestionExplanation } from '../../entities/question-explanations.entity';
 import { QuestionExplanationMedia } from '../../entities/question-explanation-media.entity';
+import { SectionQuestion } from '../../entities/section-questions.entity';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { QuestionExplanationMedia } from '../../entities/question-explanation-me
       McqOptionMedia,
       QuestionExplanation,
       QuestionExplanationMedia,
+      SectionQuestion,
     ]),
   ],
   controllers: [QuestionBankController],

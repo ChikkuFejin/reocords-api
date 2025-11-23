@@ -1,8 +1,9 @@
 import { ZodSchema } from 'zod';
-import { BadRequestException, HttpException } from '@nestjs/common';
+import { BadRequestException } from '@nestjs/common';
 import { serviceResponse } from './response';
 
 export function validateWithZod<T>(schema: ZodSchema<T>, data: unknown): T {
+  console.log('Incoming payload:', data, typeof data);
   const result = schema.safeParse(data);
 
   if (!result.success) {

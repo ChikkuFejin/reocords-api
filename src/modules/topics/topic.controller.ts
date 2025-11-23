@@ -6,23 +6,30 @@ import {
   Get,
   Param,
   Patch,
-  Post, UsePipes,
+  Post,
+  UsePipes,
 } from '@nestjs/common';
-import { TopicsDto, createBoardDtoScheme } from './dto/topics.dto';
-import { UpdateBoardDto, updateBoardDtoScheme } from './dto/update-board.dto';
+import {
+  CreateTopicsDto,
+  createTopicsDtoScheme,
+  UpdateTopicsDto,
+  updateTopicsDtoScheme,
+} from './dto/topics.dto';
 import { serviceResponse } from '../../helpers/response';
 import { TopicsResource } from './resources/topics.resource';
 import { HttpResponseMessages } from '../../constants/http-response-messages';
-import { BoardService } from './board.service';
+import { TopicService } from './topic.service';
 import { ZodValidationPipe } from '../../utils/pipes/zodValidation.pipe';
 
-@Controller('board')
-export class BoardController {
-  constructor(private readonly service: BoardService) {}
+@Controller('topic-service')
+export class TopicController {
+  constructor(private readonly service: TopicService) {}
 
   @Post()
-  @UsePipes(new ZodValidationPipe(createBoardDtoScheme))
-  async create(@Body() payload: TopicsDto) {
+  async create(
+    @Body(new ZodValidationPipe(createTopicsDtoScheme))
+    payload: CreateTopicsDto,
+  ) {
     const respnonse = await this.service.create(payload);
     return serviceResponse.success(
       TopicsResource.toResponse(respnonse),
@@ -46,8 +53,11 @@ export class BoardController {
   }
 
   @Patch(':id')
-  @UsePipes(new ZodValidationPipe(updateBoardDtoScheme))
-  async update(@Param('id') id: number, @Body() payload: UpdateBoardDto) {
+  async update(
+    @Param('id') id: number,
+    @Body(new ZodValidationPipe(createTopicsDtoScheme))
+    payload: UpdateTopicsDto,
+  ) {
     const respnonse = await this.service.update(id, payload);
     let message = HttpResponseMessages.UPDATED;
     if (!respnonse?.affected) {

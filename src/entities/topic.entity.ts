@@ -3,9 +3,11 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Assessment } from './assessment.entity';
 
 @Entity('topics')
 export class Topic {
@@ -16,7 +18,7 @@ export class Topic {
   name: string;
 
   @Column({ type: 'text', nullable: true })
-  description: string;
+  description: string | null;
 
   @Column({ default: true })
   is_active: boolean;
@@ -29,4 +31,7 @@ export class Topic {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(() => Assessment, (assessment) => assessment.topic)
+  assessments: Assessment[];
 }

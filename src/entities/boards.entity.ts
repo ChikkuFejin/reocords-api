@@ -1,10 +1,13 @@
 import {
   Column,
-  CreateDateColumn, DeleteDateColumn,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Assessment } from './assessment.entity';
 
 @Entity('boards')
 export class Board {
@@ -28,4 +31,7 @@ export class Board {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(() => Assessment, (assessment) => assessment.board)
+  assessments: Assessment[];
 }

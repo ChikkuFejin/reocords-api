@@ -25,7 +25,4 @@ export class User {
 
   @Column()
   deleted_at: Date;
-
-  //   @ManyToOne(() => Customer, (customer) => customer.users)
-  //   customer: Customer;
 }

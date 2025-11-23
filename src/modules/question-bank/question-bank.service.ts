@@ -4,7 +4,7 @@ import {
   McqOptionDto,
 } from './dto/create-question-bank.dto';
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
-import { DataSource, Repository, In } from 'typeorm';
+import { DataSource, Repository, In, Like } from 'typeorm';
 import { Question } from '../../entities/question.entity';
 import { QuestionMedia } from '../../entities/question-media.entity';
 import { McqOption } from '../../entities/mcq-option.entity';
@@ -84,8 +84,8 @@ export class QuestionBankService {
     });
   }
 
-  findAll() {
-    return this.repo.find({
+  findAll(query: { search?: string } | null = null) {
+    const sqlQuery = {
       relations: [
         'question_media',
         'mcq_options',
@@ -98,7 +98,17 @@ export class QuestionBankService {
         'complexityLevel',
         'board',
       ],
-    });
+    };
+
+    if (query?.search) {
+      console.log(query.search);
+      sqlQuery['where'] = {
+        questionText: Like(`%${query.search}%`),
+      };
+    }
+    console.log('query', query);
+
+    return this.repo.find(sqlQuery);
   }
 
   findOne(id: number) {
@@ -163,8 +173,6 @@ export class QuestionBankService {
         });
         await manager.save(McqOption, mcqOptionsEntitty);
       }
-
-
 
       // // Add new media (if provided)
       // if (dto.question_media?.length) {

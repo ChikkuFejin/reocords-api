@@ -17,6 +17,7 @@ import { Board } from './boards.entity';
 import { QuestionMedia } from './question-media.entity';
 import { McqOption } from './mcq-option.entity';
 import { QuestionExplanation } from './question-explanations.entity';
+import { SectionQuestion } from './section-questions.entity';
 
 @Entity('questions')
 export class Question {
@@ -86,4 +87,10 @@ export class Question {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(
+    () => SectionQuestion,
+    (sectionQuestion) => sectionQuestion.assessmentSection,
+  )
+  sectionQuestions: SectionQuestion[];
 }

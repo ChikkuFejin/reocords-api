@@ -46,8 +46,10 @@ export class BoardController {
   }
 
   @Patch(':id')
-  @UsePipes(new ZodValidationPipe(updateBoardDtoScheme))
-  async update(@Param('id') id: number, @Body() payload: UpdateBoardDto) {
+  async update(
+    @Param('id') id: number,
+    @Body(new ZodValidationPipe(updateBoardDtoScheme)) payload: UpdateBoardDto,
+  ) {
     const respnonse = await this.service.update(id, payload);
     let message = HttpResponseMessages.UPDATED;
     if (!respnonse?.affected) {

@@ -1,0 +1,223 @@
+{
+  "info": {
+    "name": "Records Backend API",
+    "_postman_id": "9f3c88e1-6f4b-4c9b-9a6e-1a9f2b20d111",
+    "description": "Auto-generated Postman collection for the Records NestJS backend. Global API prefix is /api/v1. Update environment variables as needed.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "apiPrefix", "value": "api/v1" }
+  ],
+  "item": [
+    {
+      "name": "Root",
+      "item": [
+        {
+          "name": "Health: GET /",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/{{apiPrefix}}/",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", ""],
+              "query": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "POST auth-master/services",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"module\": \"auth\",\n  \"action\": \"login\",\n  \"data\": {\n    \"username\": \"user@example.com\",\n    \"password\": \"secret\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/{{apiPrefix}}/auth-master/services",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "auth-master", "services"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Dropdown Master",
+      "item": [
+        {
+          "name": "POST dropdown-master",
+          "request": {
+            "method": "POST",
+            "header": [ {"key": "Content-Type", "value": "application/json"} ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"module\": \"dropdown\",\n  \"action\": \"findAll\",\n  \"data\": {}\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/{{apiPrefix}}/dropdown-master",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "dropdown-master"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Product Master",
+      "item": [
+        {
+          "name": "POST product-master/services",
+          "request": {
+            "method": "POST",
+            "header": [ {"key": "Content-Type", "value": "application/json"} ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"module\": \"product\",\n  \"action\": \"services\",\n  \"data\": {}\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/{{apiPrefix}}/product-master/services",
+              "host": ["{{baseUrl}}"],
+              "path": ["{{apiPrefix}}", "product-master", "services"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "GET users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{apiPrefix}}/users", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "users"] }
+          }
+        },
+        {
+          "name": "GET users/:id",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/{{apiPrefix}}/users/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "users", ":id"] } }
+        },
+        {
+          "name": "POST users",
+          "request": {
+            "method": "POST",
+            "header": [ {"key": "Content-Type", "value": "application/json"} ],
+            "body": {"mode": "raw", "raw": "{}"},
+            "url": { "raw": "{{baseUrl}}/{{apiPrefix}}/users", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "users"] }
+          }
+        },
+        {
+          "name": "DELETE users/:id",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "{{baseUrl}}/{{apiPrefix}}/users/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "users", ":id"] } }
+        }
+      ]
+    },
+    {
+      "name": "Boards",
+      "item": [
+        {"name": "POST board", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/board", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "board"]}}},
+        {"name": "GET board", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/board", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "board"]}}},
+        {"name": "GET board/:id", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/board/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "board", ":id"]}}},
+        {"name": "PATCH board/:id", "request": {"method": "PATCH", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/board/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "board", ":id"]}}},
+        {"name": "DELETE board/:id", "request": {"method": "DELETE", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/board/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "board", ":id"]}}}
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {"name": "POST category", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\\n  \\\"name\\\": \\\"Category Name\\\",\\n  \\\"parent_id\\\": null\\n}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/category", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "category"]}}},
+        {"name": "GET category", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/category", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "category"]}}},
+        {"name": "GET category/:id", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/category/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "category", ":id"]}}},
+        {"name": "PATCH category/:id", "request": {"method": "PATCH", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\\n  \\\"name\\\": \\\"Updated Name\\\",\\n  \\\"parent_id\\\": null\\n}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/category/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "category", ":id"]}}},
+        {"name": "DELETE category/:id", "request": {"method": "DELETE", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/category/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "category", ":id"]}}}
+      ]
+    },
+    {
+      "name": "Complexity Level",
+      "item": [
+        {"name": "POST complexity-level", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\\n  \\\"name\\\": \\\"Easy\\\",\\n  \\\"description\\\": \\\"...\\\",\\n  \\\"is_active\\\": true\\n}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/complexity-level", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "complexity-level"]}}},
+        {"name": "GET complexity-level", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/complexity-level", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "complexity-level"]}}},
+        {"name": "GET complexity-level/:id", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/complexity-level/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "complexity-level", ":id"]}}},
+        {"name": "PATCH complexity-level/:id", "request": {"method": "PATCH", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\\n  \\\"name\\\": \\\"Medium\\\"\\n}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/complexity-level/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "complexity-level", ":id"]}}},
+        {"name": "DELETE complexity-level/:id", "request": {"method": "DELETE", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/complexity-level/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "complexity-level", ":id"]}}}
+      ]
+    },
+    {
+      "name": "Question Types",
+      "item": [
+        {"name": "POST question-type", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\\n  \\\"name\\\": \\\"MCQ\\\",\\n  \\\"is_active\\\": true\\n}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-type", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-type"]}}},
+        {"name": "GET question-type", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-type", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-type"]}}},
+        {"name": "GET question-type/:id", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-type/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-type", ":id"]}}},
+        {"name": "PATCH question-type/:id", "request": {"method": "PATCH", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\\n  \\\"name\\\": \\\"Short Answer\\\"\\n}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-type/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-type", ":id"]}}},
+        {"name": "DELETE question-type/:id", "request": {"method": "DELETE", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-type/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-type", ":id"]}}}
+      ]
+    },
+    {
+      "name": "Question Sources",
+      "item": [
+        {"name": "POST question-source", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\\n  \\\"name\\\": \\\"Book\\\",\\n  \\\"is_active\\\": true\\n}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-source", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-source"]}}},
+        {"name": "GET question-source", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-source", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-source"]}}},
+        {"name": "GET question-source/:id", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-source/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-source", ":id"]}}},
+        {"name": "PATCH question-source/:id", "request": {"method": "PATCH", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\\n  \\\"name\\\": \\\"Updated\\\"\\n}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-source/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-source", ":id"]}}},
+        {"name": "DELETE question-source/:id", "request": {"method": "DELETE", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-source/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-source", ":id"]}}}
+      ]
+    },
+    {
+      "name": "Question Bank",
+      "item": [
+        {"name": "POST question-bank", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"question_text\": \"Sample question?\",\n  \"question_type_id\": 1,\n  \"category_id\": 1,\n  \"source_id\": 1,\n  \"mark\": 1,\n  \"answerable_time_seconds\": 60,\n  \"complexity_level_id\": 1,\n  \"status\": \"draft\",\n  \"board_id\": 1,\n  \"mcq_options\": [\n    {\n      \"option_text\": \"Option A\",\n      \"is_correct_answer\": true,\n      \"is_active\": true\n    },\n    {\n      \"option_text\": \"Option B\",\n      \"is_correct_answer\": false,\n      \"is_active\": true\n    }\n  ],\n  \"explanation\": {\n    \"explanation\": \"Because...\"\n  }\n}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-bank", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-bank"]}}},
+        {"name": "GET question-bank", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-bank", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-bank"]}}},
+        {"name": "GET question-bank/:id", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-bank/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-bank", ":id"]}}},
+        {"name": "PATCH question-bank/:id", "request": {"method": "PATCH", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-bank/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-bank", ":id"]}}},
+        {"name": "DELETE question-bank/:id", "request": {"method": "DELETE", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-bank/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-bank", ":id"]}}},
+        {"name": "POST question-bank/institution", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/question-bank/institution", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "question-bank", "institution"]}}}
+      ]
+    },
+    {
+      "name": "Standards",
+      "item": [
+        {"name": "POST standards", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\\n  \\\"name\\\": \\\"Standard 1\\\",\\n  \\\"description\\\": \\\"...\\\",\\n  \\\"is_active\\\": true\\n}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/standards", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "standards"]}}},
+        {"name": "GET standards", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/standards", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "standards"]}}},
+        {"name": "GET standards/:id", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/standards/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "standards", ":id"]}}},
+        {"name": "PATCH standards/:id", "request": {"method": "PATCH", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\\n  \\\"name\\\": \\\"Standard 1 Updated\\\"\\n}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/standards/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "standards", ":id"]}}},
+        {"name": "DELETE standards/:id", "request": {"method": "DELETE", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/standards/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "standards", ":id"]}}},
+        {"name": "POST standards/institution/:id", "request": {"method": "POST", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/standards/institution/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "standards", "institution", ":id"]}}},
+        {"name": "POST standards/add-standard-section", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\\n  \\\"standard\\\": {\\n    \\\"name\\\": \\\"Std Name\\\",\\n    \\\"description\\\": \\\"...\\\",\\n    \\\"is_active\\\": true,\\n    \\\"institution_id\\\": 1\\n  },\\n  \\\"sections\\\": [\\n    {\\n      \\\"name\\\": \\\"Section A\\\",\\n      \\\"is_active\\\": true,\\n      \\\"category\\\": [1,2]\\n    }\\n  ]\\n}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/standards/add-standard-section", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "standards", "add-standard-section"]}}}
+      ]
+    },
+    {
+      "name": "Topics",
+      "item": [
+        {"name": "POST topic-service", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/topic-service", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "topic-service"]}}},
+        {"name": "GET topic-service", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/topic-service", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "topic-service"]}}},
+        {"name": "GET topic-service/:id", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/topic-service/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "topic-service", ":id"]}}},
+        {"name": "PATCH topic-service/:id", "request": {"method": "PATCH", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/topic-service/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "topic-service", ":id"]}}},
+        {"name": "DELETE topic-service/:id", "request": {"method": "DELETE", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/topic-service/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "topic-service", ":id"]}}}
+      ]
+    },
+    {
+      "name": "Assessments",
+      "item": [
+        {"name": "POST assessments", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/assessments", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "assessments"]}}},
+        {"name": "GET assessments", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/assessments", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "assessments"]}}},
+        {"name": "GET assessments/:id", "request": {"method": "GET", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/assessments/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "assessments", ":id"]}}},
+        {"name": "PATCH assessments/:id", "request": {"method": "PATCH", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/assessments/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "assessments", ":id"]}}},
+        {"name": "DELETE assessments/:id", "request": {"method": "DELETE", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/assessments/:id", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "assessments", ":id"]}}},
+        {"name": "POST assessments/add-questions", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{}"}, "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/assessments/add-questions", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "assessments", "add-questions"]}}},
+        {"name": "POST assessments/section-questions/:assessmentId", "request": {"method": "POST", "header": [], "url": {"raw": "{{baseUrl}}/{{apiPrefix}}/assessments/section-questions/:assessmentId", "host": ["{{baseUrl}}"], "path": ["{{apiPrefix}}", "assessments", "section-questions", ":assessmentId"]}}}
+      ]
+    }
+  ]
+}

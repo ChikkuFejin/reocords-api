@@ -9,6 +9,8 @@ import {
   DeleteDateColumn,
   JoinColumn,
 } from 'typeorm';
+import { Assessment } from './assessment.entity';
+import { Standard } from './standard.entity';
 
 @Entity('categories')
 export class Category {
@@ -33,6 +35,15 @@ export class Category {
 
   @OneToMany(() => Category, (category) => category.parent)
   children: Category[];
+  @ManyToOne(() => Standard, (standard) => standard.categories, {
+    nullable: true,
+    onDelete: 'SET NULL',
+  })
+  @JoinColumn({ name: 'standard_id' })
+  standard?: Standard;
+
+  @OneToMany(() => Assessment, (assessment) => assessment.category)
+  assessments: Assessment[];
 
   @DeleteDateColumn({ type: 'timestamp', nullable: true })
   deleted_at: Date;

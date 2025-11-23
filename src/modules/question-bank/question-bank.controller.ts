@@ -8,20 +8,19 @@ import {
   Patch,
   Post,
   UsePipes,
+  Request,
 } from '@nestjs/common';
+import { Request as ExpressRequest } from 'express';
 import {
   CreateQuestionBankDto,
   createQuestionBankDtoSchema,
 } from './dto/create-question-bank.dto';
-import {
-  UpdateQuestionBankDto,
-  updateQuestionBankDtoScheme,
-} from './dto/update-question-bank.dto';
 import { serviceResponse } from '../../helpers/response';
 import { QuestionBankResource } from './resources/question-bank.resource';
 import { HttpResponseMessages } from '../../constants/http-response-messages';
 import { QuestionBankService } from './question-bank.service';
 import { ZodValidationPipe } from '../../utils/pipes/zodValidation.pipe';
+import { CreateUserDto } from '../users/dto/user.dto';
 
 @Controller('question-bank')
 export class QuestionBankController {
@@ -30,7 +29,6 @@ export class QuestionBankController {
   @Post()
   @UsePipes(new ZodValidationPipe(createQuestionBankDtoSchema))
   async create(@Body() payload: CreateQuestionBankDto) {
-
     const respnonse = await this.service.create(payload);
     return serviceResponse.success(
       // QuestionBankResource.toResponse(respnonse),
@@ -57,12 +55,11 @@ export class QuestionBankController {
   @Patch(':id')
   // @UsePipes(new ZodValidationPipe(createQuestionBankDtoSchema))
   async update(@Param('id') id: number, @Body() payload: any) {
-
-    const question  = await this.service.findOne(id);
+    const question = await this.service.findOne(id);
     if (!question) {
       throw new BadRequestException(serviceResponse.notFoundError());
     }
-    const respnonse = await this.service.update(id, payload,question);
+    const respnonse = await this.service.update(id, payload, question);
     let message = HttpResponseMessages.UPDATED;
     if (!respnonse) {
       message = HttpResponseMessages.RESOURCE_NOT_AFFECTED;
@@ -78,5 +75,22 @@ export class QuestionBankController {
       message = HttpResponseMessages.RESOURCE_NOT_AFFECTED;
     }
     return serviceResponse.success(null, message);
+  }
+
+  @Post('institution')
+  async institution(
+    @Body() payload: any,
+    @Request() req: ExpressRequest & { user?: CreateUserDto },
+  ) {
+    const user = req.user;
+    if (!user) {
+      throw new BadRequestException(serviceResponse.unAuthorizedError());
+    }
+    const institutionId = user.institution_id || null;
+    if (!institutionId) {
+      throw new BadRequestException(serviceResponse.notFoundError());
+    }
+    const data = await this.service.findAll(payload);
+    return serviceResponse.success(QuestionBankResource.toCollection(data));
   }
 }
