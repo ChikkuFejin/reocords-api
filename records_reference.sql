@@ -1,7 +1,4 @@
-
 -- Participants
-
-
 -- Topics
 CREATE TABLE topics (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -78,3 +75,10 @@ CREATE TABLE users (
     password_hash TEXT,
     deleted_at TIMESTAMP NULL
 );
+
+select
+    *
+from
+    institutions;
+
+show tables;

@@ -27,6 +27,9 @@ export class Institution {
   @Column({ type: 'varchar', length: 20, nullable: true })
   mobile: string;
 
+  @Column({ type: 'varchar', length: 50, nullable: true })
+  type: string;
+
   @DeleteDateColumn({ type: 'timestamp', nullable: true })
   deleted_at?: Date;
 

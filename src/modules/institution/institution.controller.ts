@@ -21,12 +21,16 @@ import {
   UpdateInstitutionDto,
   updateInstitutionDtoSchema,
 } from './dto/update-institution.dto';
+import {
+  CreateInstitutionUserDto,
+  createInstitutionUserDtoSchema,
+} from './dto/create-institution-user.dto';
 import { InstitutionResource } from './resources/institution.resource';
 import { createStandardDtoScheme } from '../standards/dto/standards.dto';
 
 @Controller('institution')
 export class InstitutionController {
-  constructor(private readonly service: InstitutionService) {}
+  constructor(private readonly service: InstitutionService) { }
 
   @Post()
   @UsePipes(new ZodValidationPipe(createInstitutionDtoSchema))
@@ -75,5 +79,18 @@ export class InstitutionController {
       message = HttpResponseMessages.RESOURCE_NOT_AFFECTED;
     }
     return serviceResponse.success(null, message);
+  }
+
+  @Post(':id/user')
+  async createUser(
+    @Param('id') id: number,
+    @Body(new ZodValidationPipe(createInstitutionUserDtoSchema))
+    payload: CreateInstitutionUserDto,
+  ) {
+    const response = await this.service.createUser(id, payload);
+    return serviceResponse.success(
+      response,
+      HttpResponseMessages.CREATED,
+    );
   }
 }

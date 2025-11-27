@@ -9,6 +9,7 @@ export class InstitutionResource {
       gst: entity.gst,
       email: entity.email,
       mobile: entity.mobile,
+      type: entity.type,
       created_at: entity.created_at,
       updated_at: entity.updated_at,
       deleted_at: entity.deleted_at ?? null,
